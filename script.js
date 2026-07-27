@@ -1,311 +1,531 @@
-/* ==========================================
-   SHIV GANESH ❤️ KEERTHANA
-   Premium Wedding Invitation
-========================================== */
+/*=========================================
+GLOBAL
+=========================================*/
 
-document.addEventListener("DOMContentLoaded", () => {
+const opening = document.getElementById("opening");
+const envelope = document.querySelector(".envelope");
+const seal = document.querySelector(".seal");
+const website = document.getElementById("website");
 
-    // ===============================
-    // ELEMENTS
-    // ===============================
+const music = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicToggle");
 
-    const opening = document.getElementById("opening");
-    const website = document.getElementById("website");
+/*=========================================
+INITIAL STATE
+=========================================*/
 
-    const seal = document.querySelector(".seal");
-    const flap = document.querySelector(".flap");
-    const letter = document.querySelector(".letter");
+website.style.display = "none";
 
-    const music = document.getElementById("bgMusic");
+/*=========================================
+OPEN INVITATION
+=========================================*/
 
-    let opened = false;
+seal.addEventListener("click", () => {
 
-    // Hide website initially
-    website.style.display = "none";
+    envelope.classList.add("open");
 
-    // ===============================
-    // OPEN ENVELOPE
-    // ===============================
+    setTimeout(() => {
 
-    if (seal) {
+        opening.style.opacity = "0";
+        opening.style.transition = "1.2s";
 
-        seal.addEventListener("click", openInvitation);
+    }, 1200);
 
-        // Mobile support
-        seal.addEventListener("touchstart", function(e){
+    setTimeout(() => {
 
-            e.preventDefault();
+        opening.style.display = "none";
 
-            openInvitation();
+        website.style.display = "block";
 
-        }, {passive:false});
+        document.body.style.overflowY = "auto";
 
-    }
+        music.play().catch(()=>{});
 
-    function openInvitation(){
+        window.scrollTo(0,0);
 
-        if(opened) return;
+    },2200);
 
-        opened = true;
+});
 
-        // Break seal
-        seal.style.transition = ".6s";
+/*=========================================
+MUSIC BUTTON
+=========================================*/
 
-        seal.style.transform = "translateX(-50%) scale(0) rotate(360deg)";
+musicBtn.addEventListener("click",()=>{
 
-        seal.style.opacity = "0";
+    if(music.paused){
 
-        // Open flap
-        setTimeout(()=>{
+        music.play();
 
-            flap.style.transform="rotateX(-180deg)";
-
-        },500);
-
-        // Slide letter out
-setTimeout(() => {
-
-    // Bring letter above the envelope
-    letter.style.zIndex = "20";
-
-    // Move the letter upward
-    letter.style.bottom = "170px";
-
-}, 1400);
-        setTimeout(()=>{
-
-            letter.style.transform="translateX(-50%) scale(1.05)";
-
-        },2200);
-
-        // Fade opening
-        setTimeout(() => {
-
-    // Start music when invitation opens
-    if (music) {
-
-        music.volume = 0.35;
-
-        music.play().catch(() => {});
+        musicBtn.innerHTML="🎵";
 
     }
 
-},1600);
+    else{
 
-setTimeout(() => {
+        music.pause();
 
-    opening.style.transition = "1.5s";
-
-    opening.style.opacity = "0";
-
-},3800);
-
-        // Show website
-        setTimeout(()=>{
-
-            opening.style.display="none";
-
-            website.style.display="block";
-
-            if(music){
-
-                music.play().catch(()=>{});
-
-            }
-
-            window.scrollTo(0,0);
-
-        },5200);
+        musicBtn.innerHTML="🔇";
 
     }
 
-    // ======================================
-    // SMOOTH SCROLL
-    // ======================================
+});
 
-    document.querySelectorAll('a[href^="#"]').forEach(link=>{
+/*=========================================
+COUNTDOWN
+=========================================*/
 
-        link.addEventListener("click",function(e){
+const weddingDate = new Date("August 30, 2026 09:00:00").getTime();
 
-            e.preventDefault();
+function countdown(){
 
-            const target=document.querySelector(this.getAttribute("href"));
+    const now = new Date().getTime();
 
-            if(target){
+    const gap = weddingDate - now;
 
-                target.scrollIntoView({
+    if(gap<=0){
 
-                    behavior:"smooth"
+        document.getElementById("days").innerHTML="00";
+        document.getElementById("hours").innerHTML="00";
+        document.getElementById("minutes").innerHTML="00";
+        document.getElementById("seconds").innerHTML="00";
 
-                });
+        return;
 
-            }
+    }
 
-        });
+    const days=Math.floor(gap/(1000*60*60*24));
+
+    const hours=Math.floor((gap%(1000*60*60*24))/(1000*60*60));
+
+    const minutes=Math.floor((gap%(1000*60*60))/(1000*60));
+
+    const seconds=Math.floor((gap%(1000*60))/1000);
+
+    document.getElementById("days").innerHTML=String(days).padStart(2,"0");
+
+    document.getElementById("hours").innerHTML=String(hours).padStart(2,"0");
+
+    document.getElementById("minutes").innerHTML=String(minutes).padStart(2,"0");
+
+    document.getElementById("seconds").innerHTML=String(seconds).padStart(2,"0");
+
+}
+
+countdown();
+
+setInterval(countdown,1000);
+
+/*=========================================
+SMOOTH SCROLL
+=========================================*/
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+
+anchor.addEventListener("click",function(e){
+
+e.preventDefault();
+
+document.querySelector(this.getAttribute("href")).scrollIntoView({
+
+behavior:"smooth"
+
+});
+
+});
+
+});
+
+/*=========================================
+NAVBAR SHADOW
+=========================================*/
+
+window.addEventListener("scroll",()=>{
+
+const header=document.querySelector("header");
+
+if(window.scrollY>60){
+
+header.style.boxShadow="0 10px 25px rgba(0,0,0,.12)";
+
+}
+
+else{
+
+header.style.boxShadow="none";
+
+}
+   /*=========================================
+GALLERY LIGHTBOX
+=========================================*/
+
+const galleryImages = document.querySelectorAll(".gallery-grid img");
+const lightbox = document.getElementById("lightbox");
+const lightboxImage = document.getElementById("lightboxImage");
+const closeLightbox = document.getElementById("closeLightbox");
+
+galleryImages.forEach(img => {
+
+    img.addEventListener("click", () => {
+
+        lightbox.style.display = "flex";
+
+        lightboxImage.src = img.src;
 
     });
 
-    // ======================================
-    // COUNTDOWN
-    // ======================================
+});
 
-    const days=document.getElementById("days");
-    const hours=document.getElementById("hours");
-    const minutes=document.getElementById("minutes");
-    const seconds=document.getElementById("seconds");
+closeLightbox.addEventListener("click", () => {
 
-    if(days){
+    lightbox.style.display = "none";
 
-        const weddingDate=new Date("August 30, 2026 09:00:00").getTime();
+});
 
-        setInterval(()=>{
+lightbox.addEventListener("click", (e) => {
 
-            const now=new Date().getTime();
+    if (e.target === lightbox) {
 
-            const distance=weddingDate-now;
-
-            const d=Math.floor(distance/(1000*60*60*24));
-
-            const h=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-
-            const m=Math.floor((distance%(1000*60*60))/(1000*60));
-
-            const s=Math.floor((distance%(1000*60))/1000);
-
-            days.innerHTML=d;
-            hours.innerHTML=h;
-            minutes.innerHTML=m;
-            seconds.innerHTML=s;
-
-        },1000);
+        lightbox.style.display = "none";
 
     }
 
-    // ======================================
-    // FALLING FLOWERS
-    // ======================================
+});
 
-    function createPetal(){
+/*=========================================
+SCROLL REVEAL
+=========================================*/
 
-        const petal=document.createElement("div");
+const revealElements = document.querySelectorAll(
+"section,.person-card,.parent-box,.timeline-item,.gallery-grid img,.venue-card,.thank-card"
+);
 
-        petal.innerHTML="🌸";
+const revealObserver = new IntersectionObserver((entries)=>{
 
-        petal.style.position="fixed";
+entries.forEach(entry=>{
 
-        petal.style.left=Math.random()*100+"vw";
+if(entry.isIntersecting){
 
-        petal.style.top="-50px";
+entry.target.style.opacity="1";
+entry.target.style.transform="translateY(0)";
+}
 
-        petal.style.fontSize=(18+Math.random()*18)+"px";
+});
 
-        petal.style.pointerEvents="none";
+},{
+threshold:.15
+});
 
-        petal.style.zIndex="999";
+revealElements.forEach(el=>{
 
-        petal.style.transition="transform 10s linear";
+el.style.opacity="0";
+el.style.transform="translateY(60px)";
+el.style.transition=".9s ease";
 
-        document.body.appendChild(petal);
+revealObserver.observe(el);
 
-        requestAnimationFrame(()=>{
+});
 
-            petal.style.transform=
-            `translate(${(Math.random()*200)-100}px,110vh) rotate(${720*Math.random()}deg)`;
+/*=========================================
+FLOATING FLOWERS
+=========================================*/
 
-        });
+const flowerContainer=document.querySelector(".flower-container");
 
-        setTimeout(()=>{
+for(let i=0;i<25;i++){
 
-            petal.remove();
+const flower=document.createElement("div");
 
-        },10000);
+flower.innerHTML="🌸";
 
-    }
+flower.style.position="absolute";
 
-    setInterval(createPetal,900);
+flower.style.left=Math.random()*100+"vw";
 
-    // ======================================
-    // BUTTERFLY FOLLOW
-    // ======================================
+flower.style.top="-50px";
 
-    const butterfly=document.createElement("div");
+flower.style.fontSize=(18+Math.random()*20)+"px";
 
-    butterfly.innerHTML="🦋";
+flower.style.animation=`flowerFall ${8+Math.random()*10}s linear infinite`;
 
-    butterfly.style.position="fixed";
+flower.style.animationDelay=Math.random()*8+"s";
 
-    butterfly.style.left="50px";
+flowerContainer.appendChild(flower);
 
-    butterfly.style.top="50px";
+}
 
-    butterfly.style.fontSize="32px";
+/*=========================================
+FLYING BUTTERFLIES
+=========================================*/
 
-    butterfly.style.pointerEvents="none";
+const butterflyContainer=document.querySelector(".butterfly-container");
 
-    butterfly.style.zIndex="9999";
+for(let i=0;i<12;i++){
 
-    butterfly.style.transition="all .25s ease";
+const butterfly=document.createElement("div");
 
-    document.body.appendChild(butterfly);
+butterfly.innerHTML="🦋";
 
-    document.addEventListener("mousemove",e=>{
+butterfly.style.position="absolute";
 
-        butterfly.style.left=e.clientX+20+"px";
+butterfly.style.left="-100px";
 
-        butterfly.style.top=e.clientY-20+"px";
+butterfly.style.top=Math.random()*80+"vh";
 
-    });
+butterfly.style.fontSize=(20+Math.random()*18)+"px";
 
-    document.addEventListener("touchmove",e=>{
+butterfly.style.animation=`butterflyFly ${12+Math.random()*8}s linear infinite`;
 
-        if(e.touches.length){
+butterfly.style.animationDelay=Math.random()*10+"s";
 
-            butterfly.style.left=e.touches[0].clientX+20+"px";
+butterflyContainer.appendChild(butterfly);
 
-            butterfly.style.top=e.touches[0].clientY-20+"px";
+}
 
+/*=========================================
+GOLD PARTICLES
+=========================================*/
+
+const particleContainer=document.querySelector(".gold-particles");
+
+for(let i=0;i<120;i++){
+
+const particle=document.createElement("span");
+
+particle.style.position="absolute";
+
+particle.style.width="4px";
+
+particle.style.height="4px";
+
+particle.style.borderRadius="50%";
+
+particle.style.background="#d8b76a";
+
+particle.style.left=Math.random()*100+"%";
+
+particle.style.top=Math.random()*100+"%";
+
+particle.style.opacity=Math.random();
+
+particle.style.animation=`particleGlow ${2+Math.random()*5}s ease-in-out infinite`;
+
+particle.style.animationDelay=Math.random()*5+"s";
+
+particleContainer.appendChild(particle);
+
+}
+
+/*=========================================
+FLOATING HEARTS
+=========================================*/
+
+setInterval(()=>{
+
+const heart=document.createElement("div");
+
+heart.innerHTML="❤";
+
+heart.style.position="fixed";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.bottom="-30px";
+
+heart.style.color="rgba(255,80,120,.8)";
+
+heart.style.fontSize=(15+Math.random()*20)+"px";
+
+heart.style.pointerEvents="none";
+
+heart.style.zIndex="999";
+
+heart.style.transition="transform 6s linear, opacity 6s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+
+heart.style.transform="translateY(-110vh)";
+
+heart.style.opacity="0";
+
+},100);
+
+setTimeout(()=>{
+
+heart.remove();
+
+},6500);
+
+},900);
+
+});
+/* ACTIVE NAVIGATION */
+
+const sections = document.querySelectorAll("section[id]");
+const navLinks = document.querySelectorAll("nav a");
+
+window.addEventListener("scroll", () => {
+
+    let current = "";
+
+    sections.forEach(section => {
+
+        const top = section.offsetTop - 150;
+        const height = section.offsetHeight;
+
+        if (window.scrollY >= top) {
+            current = section.getAttribute("id");
         }
 
     });
 
-    // ======================================
-    // REVEAL ON SCROLL
-    // ======================================
+    navLinks.forEach(link => {
 
-    const observer=new IntersectionObserver(entries=>{
+        link.classList.remove("active");
 
-        entries.forEach(entry=>{
-
-            if(entry.isIntersecting){
-
-                entry.target.style.opacity="1";
-
-                entry.target.style.transform="translateY(0)";
-
-            }
-
-        });
-
-    },{
-
-        threshold:.2
-
-    });
-
-    document.querySelectorAll("section").forEach(section=>{
-
-        if(section.id!=="opening"){
-
-            section.style.opacity="0";
-
-            section.style.transform="translateY(50px)";
-
-            section.style.transition="1s";
-
-            observer.observe(section);
-
+        if (link.getAttribute("href") === "#" + current) {
+            link.classList.add("active");
         }
 
     });
 
 });
+window.addEventListener("scroll",()=>{
+
+const hero=document.querySelector("#hero");
+
+const y=window.scrollY;
+
+hero.style.backgroundPosition=`center ${y*0.4}px`;
+
+});
+document.querySelectorAll(".btn").forEach(btn=>{
+
+btn.addEventListener("click",function(e){
+
+const ripple=document.createElement("span");
+
+const rect=this.getBoundingClientRect();
+
+ripple.style.left=e.clientX-rect.left+"px";
+
+ripple.style.top=e.clientY-rect.top+"px";
+
+ripple.className="ripple";
+
+this.appendChild(ripple);
+
+setTimeout(()=>{
+
+ripple.remove();
+
+},700);
+
+});
+
+});
+let last=0;
+
+const header=document.querySelector("header");
+
+window.addEventListener("scroll",()=>{
+
+const current=window.pageYOffset;
+
+if(current>last){
+
+header.style.top="-120px";
+
+}else{
+
+header.style.top="0";
+
+}
+
+last=current;
+
+});
+const text="Together With Their Families";
+
+const target=document.querySelector(".hero-content p");
+
+let i=0;
+
+target.innerHTML="";
+
+function type(){
+
+if(i<text.length){
+
+target.innerHTML+=text.charAt(i);
+
+i++;
+
+setTimeout(type,90);
+
+}
+
+}
+
+type();
+function confetti(){
+
+for(let i=0;i<120;i++){
+
+const c=document.createElement("div");
+
+c.className="confetti";
+
+c.style.left=Math.random()*100+"vw";
+
+c.style.background=`hsl(${Math.random()*360},80%,60%)`;
+
+c.style.animationDuration=(3+Math.random()*2)+"s";
+
+document.body.appendChild(c);
+
+setTimeout(()=>{
+
+c.remove();
+
+},5000);
+
+}
+
+}
+
+seal.addEventListener("click",()=>{
+
+setTimeout(confetti,1200);
+
+});
+let current=0;
+
+const images=document.querySelectorAll(".gallery-grid img");
+
+setInterval(()=>{
+
+images.forEach(img=>img.style.opacity=".5");
+
+images[current].style.opacity="1";
+
+current++;
+
+if(current>=images.length){
+
+current=0;
+
+}
+
+},2500);
+window.onload=()=>{
+
+setTimeout(()=>{
+
+document.getElementById("loader").style.display="none";
+
+},800);
+
+};
