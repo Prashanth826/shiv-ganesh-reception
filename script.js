@@ -79,13 +79,26 @@ setTimeout(() => {
         },2200);
 
         // Fade opening
-        setTimeout(()=>{
+        setTimeout(() => {
 
-            opening.style.transition="1.5s";
+    // Start music when invitation opens
+    if (music) {
 
-            opening.style.opacity="0";
+        music.volume = 0.35;
 
-        },3800);
+        music.play().catch(() => {});
+
+    }
+
+},1600);
+
+setTimeout(() => {
+
+    opening.style.transition = "1.5s";
+
+    opening.style.opacity = "0";
+
+},3800);
 
         // Show website
         setTimeout(()=>{
