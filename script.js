@@ -63,13 +63,15 @@ document.addEventListener("DOMContentLoaded", () => {
         },500);
 
         // Slide letter out
-        setTimeout(()=>{
+setTimeout(() => {
 
-            letter.style.bottom="120px";
+    // Bring letter above the envelope
+    letter.style.zIndex = "20";
 
-        },1400);
+    // Move the letter upward
+    letter.style.bottom = "170px";
 
-        // Lift letter
+}, 1400);
         setTimeout(()=>{
 
             letter.style.transform="translateX(-50%) scale(1.05)";
