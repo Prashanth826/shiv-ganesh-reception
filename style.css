@@ -1,0 +1,553 @@
+/* ===========================================================
+   ROYAL WEDDING INVITATION
+   Shiv Ganesh ❤️ Keerthana
+=========================================================== */
+
+/* Google Fonts
+Cinzel
+Cormorant Garamond
+Poppins
+=========================================================== */
+
+:root{
+
+    --primary:#7B1029;
+    --gold:#D4AF37;
+    --gold-light:#F6D87B;
+    --cream:#FFF9F1;
+    --dark:#231812;
+    --text:#4A3A33;
+
+    --shadow:0 20px 60px rgba(0,0,0,.25);
+
+    --radius:24px;
+
+}
+
+/* ===========================
+RESET
+=========================== */
+
+*{
+
+margin:0;
+padding:0;
+box-sizing:border-box;
+
+}
+
+html{
+
+scroll-behavior:smooth;
+
+}
+
+body{
+
+font-family:Poppins,sans-serif;
+
+background:#fff;
+
+overflow-x:hidden;
+
+color:var(--text);
+
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar{
+
+width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+background:#fafafa;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:var(--gold);
+
+border-radius:20px;
+
+}
+
+/* ===========================
+OPENING SCREEN
+=========================== */
+
+#opening{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+overflow:hidden;
+
+z-index:999999;
+
+background:
+linear-gradient(rgba(25,18,15,.55),
+rgba(25,18,15,.55)),
+url("assets/images/cover.jpg");
+
+background-size:cover;
+background-position:center;
+
+}
+
+/* Blur */
+
+.overlay{
+
+position:absolute;
+
+width:100%;
+height:100%;
+
+backdrop-filter:blur(8px);
+
+}
+
+/* ===========================
+Envelope Wrapper
+=========================== */
+
+.envelope-wrapper{
+
+position:relative;
+
+width:100%;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+justify-content:center;
+
+z-index:100;
+
+}
+
+/* Title */
+
+.royal-title{
+
+margin-bottom:40px;
+
+text-align:center;
+
+animation:fadeTop 1.5s ease;
+
+}
+
+.royal-title p{
+
+letter-spacing:6px;
+
+font-size:15px;
+
+color:white;
+
+text-transform:uppercase;
+
+}
+
+.royal-title h1{
+
+font-family:"Cinzel",serif;
+
+font-size:60px;
+
+font-weight:700;
+
+color:white;
+
+line-height:1.3;
+
+}
+
+.royal-title span{
+
+color:var(--gold);
+
+}
+
+/* ===========================
+Envelope
+=========================== */
+
+.envelope{
+
+position:relative;
+
+width:430px;
+
+height:270px;
+
+perspective:1800px;
+
+}
+
+/* Body */
+
+.body{
+
+position:absolute;
+
+width:100%;
+height:100%;
+
+background:linear-gradient(
+
+180deg,
+
+#fff8ef,
+
+#f8ebda
+
+);
+
+border-radius:12px;
+
+box-shadow:var(--shadow);
+
+border:2px solid #d7b466;
+
+}
+
+/* Flap */
+
+.flap{
+
+position:absolute;
+
+width:100%;
+height:135px;
+
+background:#f2dfc6;
+
+clip-path:polygon(
+
+0 0,
+
+100% 0,
+
+50% 100%
+
+);
+
+transform-origin:top;
+
+transition:1.6s;
+
+z-index:20;
+
+border-top-left-radius:10px;
+border-top-right-radius:10px;
+
+}
+
+/* Gold Line */
+
+.flap::after{
+
+content:"";
+
+position:absolute;
+
+left:20px;
+
+right:20px;
+
+top:20px;
+
+height:2px;
+
+background:linear-gradient(
+
+90deg,
+
+transparent,
+
+var(--gold),
+
+transparent
+
+);
+
+}
+
+/* ===========================
+Wax Seal
+=========================== */
+
+.seal{
+
+position:absolute;
+
+left:50%;
+
+top:92px;
+
+transform:translateX(-50%);
+
+width:76px;
+
+height:76px;
+
+border-radius:50%;
+
+background:
+
+radial-gradient(circle,
+
+#b8002d,
+
+#7b1029
+
+);
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-weight:bold;
+
+font-size:20px;
+
+color:white;
+
+cursor:pointer;
+
+box-shadow:
+
+0 0 25px rgba(255,0,0,.4),
+
+0 10px 20px rgba(0,0,0,.25);
+
+transition:.35s;
+
+z-index:30;
+
+}
+
+.seal:hover{
+
+transform:translateX(-50%) scale(1.08);
+
+}
+
+/* ===========================
+Invitation Card
+=========================== */
+
+.card{
+
+position:absolute;
+
+left:50%;
+
+top:25px;
+
+transform:
+
+translateX(-50%)
+
+translateY(170px);
+
+width:340px;
+
+background:var(--cream);
+
+padding:40px;
+
+border-radius:18px;
+
+border:3px solid var(--gold);
+
+box-shadow:
+
+0 20px 40px rgba(0,0,0,.25);
+
+transition:2s;
+
+z-index:5;
+
+text-align:center;
+
+}
+
+.card h3{
+
+font-family:Cinzel,serif;
+
+color:var(--gold);
+
+letter-spacing:3px;
+
+margin-bottom:15px;
+
+}
+
+.card h2{
+
+font-family:Cinzel,serif;
+
+font-size:34px;
+
+color:var(--primary);
+
+margin:12px 0;
+
+}
+
+.card p{
+
+margin-top:20px;
+
+font-size:18px;
+
+}
+
+.heart{
+
+font-size:36px;
+
+color:#d43b63;
+
+animation:heartBeat 1.8s infinite;
+
+}
+
+/* ===========================
+Tap Text
+=========================== */
+
+.tap{
+
+margin-top:50px;
+
+font-size:18px;
+
+letter-spacing:3px;
+
+color:white;
+
+animation:blink 2s infinite;
+
+}
+
+/* ===========================
+Website Hidden
+=========================== */
+
+#website{
+
+display:none;
+
+}
+
+/* ===========================
+Animations
+=========================== */
+
+@keyframes fadeTop{
+
+from{
+
+opacity:0;
+
+transform:translateY(-50px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+@keyframes blink{
+
+50%{
+
+opacity:.35;
+
+}
+
+}
+
+@keyframes heartBeat{
+
+50%{
+
+transform:scale(1.15);
+
+}
+
+}
+
+/* ===========================
+Responsive
+=========================== */
+
+@media(max-width:768px){
+
+.royal-title h1{
+
+font-size:34px;
+
+}
+
+.envelope{
+
+width:320px;
+
+height:210px;
+
+}
+
+.card{
+
+width:260px;
+
+padding:25px;
+
+}
+
+.card h2{
+
+font-size:24px;
+
+}
+
+.tap{
+
+font-size:15px;
+
+}
+
+}
