@@ -1,107 +1,577 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shiv Ganesh ❤️ Keerthana</title>
 
-<meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
 
-<title>
-Shiv Ganesh ❤️ Keerthana
-</title>
+    body{
+      font-family:'Poppins',sans-serif;
+      background:#fff9f2;
+      overflow-x:hidden;
+      color:#4b3b32;
+    }
 
-<link rel="stylesheet" href="style.css">
+    /* ================= OPENING SCREEN ================= */
 
-<link rel="preconnect"
-href="https://fonts.googleapis.com">
+    #opening{
+      position:fixed;
+      inset:0;
+      background:
+      linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+      url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1600&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      z-index:99999;
+      overflow:hidden;
+    }
 
-<link rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin>
+    .envelope-wrapper{
+      text-align:center;
+      position:relative;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Poppins:wght@300;400;500;600&display=swap"
-rel="stylesheet">
+    .title{
+      color:#fff;
+      margin-bottom:30px;
+      animation:fadeDown 1.2s ease;
+    }
 
+    .title p{
+      letter-spacing:5px;
+      text-transform:uppercase;
+      font-size:14px;
+      margin-bottom:10px;
+    }
+
+    .title h1{
+      font-family:'Cinzel',serif;
+      font-size:48px;
+      line-height:1.3;
+    }
+
+    .title span{color:#d4af37}
+
+    .envelope{
+      position:relative;
+      width:360px;
+      height:240px;
+      margin:auto;
+      perspective:1200px;
+    }
+
+    .body{
+      position:absolute;
+      width:100%;
+      height:100%;
+      background:#f8ead5;
+      border:2px solid #d4af37;
+      border-radius:12px;
+      box-shadow:0 20px 50px rgba(0,0,0,.35);
+    }
+
+    .flap{
+      position:absolute;
+      width:100%;
+      height:120px;
+      background:#f3dfc2;
+      clip-path:polygon(0 0,100% 0,50% 100%);
+      transform-origin:top;
+      transition:1.5s;
+      z-index:20;
+    }
+
+    .seal{
+      position:absolute;
+      left:50%;
+      top:78px;
+      transform:translateX(-50%);
+      width:72px;
+      height:72px;
+      border-radius:50%;
+      background:#7b1029;
+      color:#fff;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-weight:700;
+      cursor:pointer;
+      z-index:30;
+      box-shadow:0 0 20px rgba(123,16,41,.6);
+      transition:.3s;
+    }
+
+    .seal:hover{
+      transform:translateX(-50%) scale(1.08);
+    }
+
+    .card{
+      position:absolute;
+      left:50%;
+      top:18px;
+      transform:translateX(-50%) translateY(150px);
+      width:300px;
+      background:#fffdf8;
+      border:3px solid #d4af37;
+      border-radius:16px;
+      padding:28px;
+      text-align:center;
+      transition:2s;
+      z-index:5;
+      box-shadow:0 15px 30px rgba(0,0,0,.25);
+    }
+
+    .card h3{
+      font-family:'Cinzel',serif;
+      color:#d4af37;
+      margin-bottom:12px;
+      letter-spacing:2px;
+    }
+
+    .card h2{
+      font-family:'Cinzel',serif;
+      color:#7b1029;
+      margin:8px 0;
+      font-size:28px;
+    }
+
+    .heart{
+      font-size:28px;
+      color:#d43b63;
+      animation:pulse 1.6s infinite;
+    }
+
+    .tap{
+      margin-top:28px;
+      color:#fff;
+      letter-spacing:3px;
+      animation:blink 2s infinite;
+    }
+
+    /* ================= WEBSITE ================= */
+
+    #website{
+      display:none;
+      opacity:0;
+      transition:1s;
+    }
+
+    .hero{
+      min-height:100vh;
+      background:
+      linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
+      url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=1600&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      color:#fff;
+      padding:40px 20px;
+      position:relative;
+    }
+
+    .hero::before,
+    .hero::after{
+      content:"🌸";
+      position:absolute;
+      font-size:42px;
+      animation:float 4s ease-in-out infinite;
+    }
+
+    .hero::before{top:20px;left:20px}
+    .hero::after{bottom:20px;right:20px}
+
+    .hero-content{
+      max-width:800px;
+      animation:fadeUp 1.4s ease;
+    }
+
+    .hero-content h1{
+      font-family:'Cinzel',serif;
+      font-size:72px;
+      line-height:1.2;
+      margin-bottom:16px;
+    }
+
+    .hero-content .love{
+      font-size:34px;
+      color:#ffd700;
+      margin:12px 0;
+    }
+
+    .hero-content p{
+      font-size:20px;
+      margin-bottom:32px;
+    }
+
+    /* ================= COUNTDOWN ================= */
+
+    .countdown{
+      display:flex;
+      justify-content:center;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .count{
+      width:110px;
+      height:110px;
+      background:rgba(255,255,255,.15);
+      backdrop-filter:blur(10px);
+      border:1px solid rgba(255,255,255,.3);
+      border-radius:20px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 10px 25px rgba(0,0,0,.2);
+    }
+
+    .count span{
+      font-size:36px;
+      font-weight:700;
+      color:#ffd700;
+    }
+
+    .count small{
+      margin-top:6px;
+      font-size:14px;
+      letter-spacing:1px;
+      text-transform:uppercase;
+    }
+
+    /* ================= INVITATION SECTION ================= */
+
+    .section{
+      padding:90px 20px;
+      text-align:center;
+      position:relative;
+    }
+
+    .section::before,
+    .section::after{
+      content:"❀";
+      position:absolute;
+      top:18px;
+      font-size:28px;
+      color:#d4af37;
+    }
+
+    .section::before{left:18px}
+    .section::after{right:18px}
+
+    .frame{
+      max-width:950px;
+      margin:auto;
+      background:#fff;
+      border:3px solid #d4af37;
+      border-radius:28px;
+      padding:50px 40px;
+      box-shadow:0 20px 40px rgba(0,0,0,.08);
+      position:relative;
+    }
+
+    .frame::before,
+    .frame::after{
+      content:"🌿";
+      position:absolute;
+      font-size:22px;
+      top:18px;
+    }
+
+    .frame::before{left:22px}
+    .frame::after{right:22px}
+
+    .section h2{
+      font-family:'Cinzel',serif;
+      color:#7b1029;
+      font-size:40px;
+      margin-bottom:22px;
+    }
+
+    .section p{
+      line-height:1.9;
+      font-size:17px;
+      color:#5b4b42;
+    }
+
+    .divider{
+      width:120px;
+      height:4px;
+      background:linear-gradient(90deg,transparent,#d4af37,transparent);
+      margin:18px auto 28px;
+      border-radius:999px;
+    }
+
+    /* ================= ANIMATIONS ================= */
+
+    @keyframes fadeDown{
+      from{opacity:0;transform:translateY(-40px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(40px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    @keyframes pulse{
+      50%{transform:scale(1.15)}
+    }
+
+    @keyframes blink{
+      50%{opacity:.35}
+    }
+
+    @keyframes float{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-10px)}
+    }
+
+    /* ================= MOBILE ================= */
+
+    @media(max-width:768px){
+
+      .title h1{font-size:32px}
+
+      .envelope{
+        width:300px;
+        height:210px;
+      }
+
+      .card{
+        width:250px;
+        padding:22px;
+      }
+
+      .card h2{font-size:22px}
+
+      .hero-content h1{font-size:42px}
+
+      .hero-content p{font-size:16px}
+
+      .count{
+        width:82px;
+        height:82px;
+      }
+
+      .count span{font-size:24px}
+
+      .frame{
+        padding:36px 22px;
+      }
+
+      .section h2{
+        font-size:28px;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<!-- Opening Screen -->
+  <!-- OPENING SCREEN -->
+  <section id="opening">
+    <div class="envelope-wrapper">
 
-<section id="opening">
+      <div class="title">
+        <p>Wedding Invitation</p>
+        <h1>
+          Shiv Ganesh
+          <br>
+          <span>❤</span>
+          <br>
+          Keerthana
+        </h1>
+      </div>
 
-<div class="overlay"></div>
+      <div class="envelope">
 
-<div class="envelope-wrapper">
+        <div class="body"></div>
 
-<div class="royal-title">
+        <div class="flap"></div>
 
-<p>Wedding Invitation</p>
+        <div class="seal" id="seal">
+          SG
+        </div>
 
-<h1>
-Shiv Ganesh
-<span>&</span>
-Keerthana
-</h1>
+        <div class="card" id="card">
 
-</div>
+          <h3>Wedding Invitation</h3>
 
-<div class="envelope">
+          <h2>Shiv Ganesh</h2>
 
-<div class="flap"></div>
+          <div class="heart">❤</div>
 
-<div class="body"></div>
+          <h2>Keerthana</h2>
 
-<div class="seal">
+          <p>30 August 2026</p>
 
-SG ❤️ K
+        </div>
 
-</div>
+      </div>
 
-<div class="card">
+      <p class="tap">
+        Touch The Royal Seal
+      </p>
 
-<h3>Wedding Invitation</h3>
+    </div>
+  </section>
 
-<h2>Shiv Ganesh</h2>
+  <!-- MAIN WEBSITE -->
+  <main id="website">
 
-<div class="heart">
+    <!-- HERO -->
+    <section class="hero">
 
-❤
+      <div class="hero-content">
 
-</div>
+        <h1>
+          Shiv Ganesh
+          <br>
+          <span class="love">❤</span>
+          <br>
+          Keerthana
+        </h1>
 
-<h2>Keerthana</h2>
+        <p>
+          Together with their families invite you
+          to celebrate their wedding on
+          <strong>30 August 2026</strong>
+        </p>
 
-<p>
+        <div class="countdown">
 
-30 August 2026
+          <div class="count">
+            <span id="days">00</span>
+            <small>Days</small>
+          </div>
 
-</p>
+          <div class="count">
+            <span id="hours">00</span>
+            <small>Hours</small>
+          </div>
 
-</div>
+          <div class="count">
+            <span id="minutes">00</span>
+            <small>Minutes</small>
+          </div>
 
-</div>
+          <div class="count">
+            <span id="seconds">00</span>
+            <small>Seconds</small>
+          </div>
 
-<p class="tap">
+        </div>
 
-Touch the Royal Seal
+      </div>
 
-</p>
+    </section>
 
-</div>
+    <!-- INVITATION -->
+    <section class="section">
 
-</section>
+      <div class="frame">
 
-<!-- Main Website -->
+        <h2>Wedding Invitation</h2>
 
-<main id="website">
+        <div class="divider"></div>
 
-</main>
+        <p>
+          Smt. Vanitha Gopalakrishnan B.Pharm (Faculty, Art of Living)
+          and Sri J. Gopalakrishnan (DD Agri (FTC), Thiruvannamalai,
+          Faculty, Art of Living) with immense pleasure and divine blessings
+          cordially invite you with family to grace the auspicious occasion
+          of the wedding of their beloved daughter
+          <strong>Dr. G. Keerthana @ Kaviya</strong>
+          with
+          <strong>Er. M. Shiv Ganesh</strong>.
+        </p>
 
-<script src="script.js"></script>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script>
+    // Envelope Opening
+    const seal = document.getElementById('seal');
+    const flap = document.querySelector('.flap');
+    const card = document.getElementById('card');
+    const opening = document.getElementById('opening');
+    const website = document.getElementById('website');
+
+    let opened = false;
+
+    seal.addEventListener('click', () => {
+
+      if(opened) return;
+      opened = true;
+
+      // Seal disappears
+      seal.style.opacity = '0';
+      seal.style.transform = 'translateX(-50%) scale(0.2) rotate(360deg)';
+
+      // Flap opens
+      setTimeout(() => {
+        flap.style.transform = 'rotateX(-180deg)';
+      }, 400);
+
+      // Card comes out
+      setTimeout(() => {
+        card.style.transform = 'translateX(-50%) translateY(-120px)';
+      }, 1200);
+
+      // Website reveal
+      setTimeout(() => {
+        opening.style.transition = '1.2s';
+        opening.style.opacity = '0';
+      }, 3200);
+
+      setTimeout(() => {
+        opening.style.display = 'none';
+        website.style.display = 'block';
+
+        requestAnimationFrame(() => {
+          website.style.opacity = '1';
+        });
+
+      }, 4500);
+
+    });
+
+    // Countdown
+    const weddingDate = new Date('August 30, 2026 09:00:00').getTime();
+
+    function updateCountdown(){
+
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
+
+      const d = Math.floor(distance / (1000*60*60*24));
+      const h = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+      const m = Math.floor((distance % (1000*60*60)) / (1000*60));
+      const s = Math.floor((distance % (1000*60)) / 1000);
+
+      document.getElementById('days').textContent = d;
+      document.getElementById('hours').textContent = h;
+      document.getElementById('minutes').textContent = m;
+      document.getElementById('seconds').textContent = s;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
 
 </body>
-
 </html>
