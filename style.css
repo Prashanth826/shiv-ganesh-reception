@@ -1,32 +1,30 @@
 /* ===========================================================
-   ROYAL WEDDING INVITATION
+   ROYAL WEDDING INVITATION V2
    Shiv Ganesh ❤️ Keerthana
 =========================================================== */
 
-/* Google Fonts
-Cinzel
-Cormorant Garamond
-Poppins
-=========================================================== */
+/* ---------- GOOGLE FONTS ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+/* ---------- ROOT ---------- */
 
 :root{
 
-    --primary:#7B1029;
-    --gold:#D4AF37;
-    --gold-light:#F6D87B;
-    --cream:#FFF9F1;
-    --dark:#231812;
-    --text:#4A3A33;
+--primary:#6f0f27;
+--secondary:#d4af37;
+--gold:#f1c75b;
+--cream:#fff9f2;
+--white:#ffffff;
+--dark:#231712;
+--text:#4a3a32;
 
-    --shadow:0 20px 60px rgba(0,0,0,.25);
+--shadow:0 15px 50px rgba(0,0,0,.25);
 
-    --radius:24px;
+--radius:22px;
 
 }
 
-/* ===========================
-RESET
-=========================== */
+/* ---------- RESET ---------- */
 
 *{
 
@@ -48,17 +46,25 @@ font-family:Poppins,sans-serif;
 
 background:#fff;
 
-overflow-x:hidden;
-
 color:var(--text);
+
+overflow-x:hidden;
 
 }
 
-/* Scrollbar */
+/* ---------- SCROLLBAR ---------- */
 
 ::-webkit-scrollbar{
 
 width:10px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:var(--secondary);
+
+border-radius:50px;
 
 }
 
@@ -68,17 +74,9 @@ background:#fafafa;
 
 }
 
-::-webkit-scrollbar-thumb{
-
-background:var(--gold);
-
-border-radius:20px;
-
-}
-
-/* ===========================
+/* =======================================================
 OPENING SCREEN
-=========================== */
+======================================================= */
 
 #opening{
 
@@ -98,11 +96,11 @@ align-items:center;
 
 overflow:hidden;
 
-z-index:999999;
+z-index:99999;
 
 background:
-linear-gradient(rgba(25,18,15,.55),
-rgba(25,18,15,.55)),
+linear-gradient(rgba(22,15,12,.55),
+rgba(22,15,12,.55)),
 url("assets/images/cover.jpg");
 
 background-size:cover;
@@ -123,89 +121,91 @@ backdrop-filter:blur(8px);
 
 }
 
-/* ===========================
-Envelope Wrapper
-=========================== */
-
-.envelope-wrapper{
-
-position:relative;
-
-width:100%;
-
-display:flex;
-
-flex-direction:column;
-
-align-items:center;
-
-justify-content:center;
-
-z-index:100;
-
-}
-
-/* Title */
+/* =======================================================
+TITLE
+======================================================= */
 
 .royal-title{
 
-margin-bottom:40px;
+position:absolute;
+
+top:80px;
 
 text-align:center;
 
-animation:fadeTop 1.5s ease;
+width:100%;
+
+z-index:20;
+
+animation:fadeDown 1.5s;
 
 }
 
 .royal-title p{
 
+color:white;
+
 letter-spacing:6px;
 
 font-size:15px;
 
-color:white;
-
 text-transform:uppercase;
+
+margin-bottom:15px;
 
 }
 
 .royal-title h1{
 
-font-family:"Cinzel",serif;
+font-family:Cinzel,serif;
 
-font-size:60px;
+font-size:64px;
 
-font-weight:700;
+line-height:1.2;
 
 color:white;
 
-line-height:1.3;
+font-weight:600;
 
 }
 
 .royal-title span{
 
+display:block;
+
+font-size:42px;
+
+margin:15px 0;
+
 color:var(--gold);
 
 }
 
-/* ===========================
-Envelope
-=========================== */
+/* =======================================================
+ENVELOPE
+======================================================= */
+
+.envelope-wrapper{
+
+position:relative;
+
+z-index:100;
+
+}
 
 .envelope{
 
 position:relative;
 
-width:430px;
+width:460px;
 
-height:270px;
+height:300px;
 
 perspective:1800px;
 
 }
 
-/* Body */
+/* Back */
 
 .body{
 
@@ -215,20 +215,35 @@ width:100%;
 height:100%;
 
 background:linear-gradient(
-
 180deg,
-
-#fff8ef,
-
-#f8ebda
-
+#fffaf3,
+#f5e8d5
 );
 
-border-radius:12px;
+border-radius:10px;
+
+border:2px solid #d9b56b;
 
 box-shadow:var(--shadow);
 
-border:2px solid #d7b466;
+}
+
+/* Gold Border */
+
+.body::before{
+
+content:"";
+
+position:absolute;
+
+top:15px;
+left:15px;
+right:15px;
+bottom:15px;
+
+border:2px solid rgba(212,175,55,.5);
+
+border-radius:8px;
 
 }
 
@@ -239,23 +254,15 @@ border:2px solid #d7b466;
 position:absolute;
 
 width:100%;
-height:135px;
+height:150px;
 
-background:#f2dfc6;
+background:#f3dfc4;
 
-clip-path:polygon(
-
-0 0,
-
-100% 0,
-
-50% 100%
-
-);
+clip-path:polygon(0 0,100% 0,50% 100%);
 
 transform-origin:top;
 
-transition:1.6s;
+transition:1.5s ease;
 
 z-index:20;
 
@@ -264,39 +271,30 @@ border-top-right-radius:10px;
 
 }
 
-/* Gold Line */
-
 .flap::after{
 
 content:"";
 
 position:absolute;
 
-left:20px;
-
-right:20px;
-
+left:30px;
+right:30px;
 top:20px;
 
 height:2px;
 
 background:linear-gradient(
-
 90deg,
-
 transparent,
-
-var(--gold),
-
+var(--secondary),
 transparent
-
 );
 
 }
 
-/* ===========================
-Wax Seal
-=========================== */
+/* =======================================================
+SEAL
+======================================================= */
 
 .seal{
 
@@ -304,25 +302,20 @@ position:absolute;
 
 left:50%;
 
-top:92px;
+top:105px;
 
 transform:translateX(-50%);
 
-width:76px;
+width:80px;
 
-height:76px;
+height:80px;
 
 border-radius:50%;
 
 background:
-
 radial-gradient(circle,
-
-#b8002d,
-
-#7b1029
-
-);
+#b71538,
+#7a1028);
 
 display:flex;
 
@@ -332,33 +325,33 @@ align-items:center;
 
 font-weight:bold;
 
-font-size:20px;
+font-size:18px;
 
 color:white;
 
 cursor:pointer;
 
-box-shadow:
-
-0 0 25px rgba(255,0,0,.4),
-
-0 10px 20px rgba(0,0,0,.25);
-
-transition:.35s;
-
 z-index:30;
+
+transition:.4s;
+
+box-shadow:
+0 0 20px rgba(255,0,0,.35),
+0 10px 20px rgba(0,0,0,.35);
 
 }
 
 .seal:hover{
 
-transform:translateX(-50%) scale(1.08);
+transform:
+translateX(-50%)
+scale(1.08);
 
 }
 
-/* ===========================
-Invitation Card
-=========================== */
+/* =======================================================
+CARD
+======================================================= */
 
 .card{
 
@@ -369,30 +362,27 @@ left:50%;
 top:25px;
 
 transform:
-
 translateX(-50%)
+translateY(190px);
 
-translateY(170px);
-
-width:340px;
-
-background:var(--cream);
+width:360px;
 
 padding:40px;
 
-border-radius:18px;
+background:var(--cream);
 
-border:3px solid var(--gold);
+border-radius:20px;
+
+border:3px solid var(--secondary);
 
 box-shadow:
-
 0 20px 40px rgba(0,0,0,.25);
+
+text-align:center;
 
 transition:2s;
 
 z-index:5;
-
-text-align:center;
 
 }
 
@@ -400,9 +390,9 @@ text-align:center;
 
 font-family:Cinzel,serif;
 
-color:var(--gold);
+letter-spacing:4px;
 
-letter-spacing:3px;
+color:var(--secondary);
 
 margin-bottom:15px;
 
@@ -410,73 +400,133 @@ margin-bottom:15px;
 
 .card h2{
 
-font-family:Cinzel,serif;
+font-family:Cormorant Garamond,serif;
 
-font-size:34px;
+font-size:42px;
 
 color:var(--primary);
 
-margin:12px 0;
+font-weight:700;
+
+margin:8px 0;
 
 }
 
 .card p{
 
-margin-top:20px;
+margin-top:18px;
 
 font-size:18px;
+
+letter-spacing:2px;
 
 }
 
 .heart{
 
-font-size:36px;
+font-size:40px;
 
-color:#d43b63;
+color:#d73d63;
 
-animation:heartBeat 1.8s infinite;
+animation:heartbeat 1.6s infinite;
 
 }
 
-/* ===========================
-Tap Text
-=========================== */
+/* =======================================================
+OPEN TEXT
+======================================================= */
 
 .tap{
 
-margin-top:50px;
+margin-top:45px;
+
+text-align:center;
+
+color:white;
 
 font-size:18px;
 
-letter-spacing:3px;
-
-color:white;
+letter-spacing:4px;
 
 animation:blink 2s infinite;
 
 }
 
-/* ===========================
-Website Hidden
-=========================== */
+/* =======================================================
+HIDDEN WEBSITE
+======================================================= */
 
 #website{
 
 display:none;
 
+min-height:100vh;
+
+background:#fff;
+
 }
 
-/* ===========================
-Animations
-=========================== */
+/* =======================================================
+BUTTONS
+======================================================= */
 
-@keyframes fadeTop{
+.btn{
+
+display:inline-block;
+
+padding:15px 35px;
+
+background:var(--primary);
+
+color:white;
+
+text-decoration:none;
+
+border-radius:50px;
+
+transition:.3s;
+
+}
+
+.btn:hover{
+
+background:var(--secondary);
+
+color:#222;
+
+}
+
+/* =======================================================
+ANIMATIONS
+======================================================= */
+
+@keyframes heartbeat{
+
+50%{
+
+transform:scale(1.15);
+
+}
+
+}
+
+@keyframes blink{
+
+50%{
+
+opacity:.3;
+
+}
+
+}
+
+@keyframes fadeDown{
 
 from{
 
 opacity:0;
 
-transform:translateY(-50px);
+transform:translateY(-60px);
 
 }
 
@@ -490,35 +540,27 @@ transform:translateY(0);
 
 }
 
-@keyframes blink{
-
-50%{
-
-opacity:.35;
-
-}
-
-}
-
-@keyframes heartBeat{
-
-50%{
-
-transform:scale(1.15);
-
-}
-
-}
-
-/* ===========================
-Responsive
-=========================== */
+/* =======================================================
+RESPONSIVE
+======================================================= */
 
 @media(max-width:768px){
 
+.royal-title{
+
+top:40px;
+
+}
+
 .royal-title h1{
 
-font-size:34px;
+font-size:38px;
+
+}
+
+.royal-title span{
+
+font-size:28px;
 
 }
 
@@ -526,7 +568,7 @@ font-size:34px;
 
 width:320px;
 
-height:210px;
+height:220px;
 
 }
 
@@ -540,13 +582,15 @@ padding:25px;
 
 .card h2{
 
-font-size:24px;
+font-size:28px;
 
 }
 
 .tap{
 
 font-size:15px;
+
+letter-spacing:2px;
 
 }
 
