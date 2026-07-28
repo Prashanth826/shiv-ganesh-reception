@@ -361,3 +361,171 @@ heart.remove();
 },6500);
 
 },900);
+/* ACTIVE NAVIGATION */
+
+const sections = document.querySelectorAll("section[id]");
+const navLinks = document.querySelectorAll("nav a");
+
+window.addEventListener("scroll", () => {
+
+    let current = "";
+
+    sections.forEach(section => {
+
+        const top = section.offsetTop - 150;
+        const height = section.offsetHeight;
+
+        if (window.scrollY >= top) {
+            current = section.getAttribute("id");
+        }
+
+    });
+
+    navLinks.forEach(link => {
+
+        link.classList.remove("active");
+
+        if (link.getAttribute("href") === "#" + current) {
+            link.classList.add("active");
+        }
+
+    });
+
+});
+window.addEventListener("scroll",()=>{
+
+const hero=document.querySelector("#hero");
+
+const y=window.scrollY;
+
+hero.style.backgroundPosition=`center ${y*0.4}px`;
+
+});
+document.querySelectorAll(".btn").forEach(btn=>{
+
+btn.addEventListener("click",function(e){
+
+const ripple=document.createElement("span");
+
+const rect=this.getBoundingClientRect();
+
+ripple.style.left=e.clientX-rect.left+"px";
+
+ripple.style.top=e.clientY-rect.top+"px";
+
+ripple.className="ripple";
+
+this.appendChild(ripple);
+
+setTimeout(()=>{
+
+ripple.remove();
+
+},700);
+
+});
+
+});
+let last=0;
+
+const header=document.querySelector("header");
+
+window.addEventListener("scroll",()=>{
+
+const current=window.pageYOffset;
+
+if(current>last){
+
+header.style.top="-120px";
+
+}else{
+
+header.style.top="0";
+
+}
+
+last=current;
+
+});
+const text="Together With Their Families";
+
+const target=document.querySelector(".hero-content p");
+
+let i=0;
+
+target.innerHTML="";
+
+function type(){
+
+if(i<text.length){
+
+target.innerHTML+=text.charAt(i);
+
+i++;
+
+setTimeout(type,90);
+
+}
+
+}
+
+type();
+function confetti(){
+
+for(let i=0;i<120;i++){
+
+const c=document.createElement("div");
+
+c.className="confetti";
+
+c.style.left=Math.random()*100+"vw";
+
+c.style.background=`hsl(${Math.random()*360},80%,60%)`;
+
+c.style.animationDuration=(3+Math.random()*2)+"s";
+
+document.body.appendChild(c);
+
+setTimeout(()=>{
+
+c.remove();
+
+},5000);
+
+}
+
+}
+
+seal.addEventListener("click",()=>{
+
+setTimeout(confetti,1200);
+
+});
+let current=0;
+
+const images=document.querySelectorAll(".gallery-grid img");
+
+setInterval(()=>{
+
+images.forEach(img=>img.style.opacity=".5");
+
+images[current].style.opacity="1";
+
+current++;
+
+if(current>=images.length){
+
+current=0;
+
+}
+
+},2500);
+window.onload=()=>{
+
+setTimeout(()=>{
+
+document.getElementById("loader").style.display="none";
+
+},800);
+
+};
