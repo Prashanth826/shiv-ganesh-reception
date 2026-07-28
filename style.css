@@ -1553,3 +1553,52 @@ opacity:1;
 
 
 }
+@keyframes flowerFall{
+
+0%{
+transform:translateY(-100px) rotate(0deg);
+}
+
+100%{
+transform:translateY(120vh) rotate(360deg);
+}
+
+}
+
+@keyframes butterflyFly{
+
+0%{
+transform:translateX(-150px) translateY(0);
+}
+
+25%{
+transform:translateX(30vw) translateY(-40px);
+}
+
+50%{
+transform:translateX(60vw) translateY(40px);
+}
+
+75%{
+transform:translateX(90vw) translateY(-30px);
+}
+
+100%{
+transform:translateX(120vw) translateY(0);
+}
+
+}
+
+@keyframes particleGlow{
+
+0%,100%{
+opacity:.2;
+transform:scale(.5);
+}
+
+50%{
+opacity:1;
+transform:scale(1.8);
+}
+
+}
